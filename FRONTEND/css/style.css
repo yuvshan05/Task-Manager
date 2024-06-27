@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    background-image: url('./Images/Space\ wallpaper\ dump.jpeg');
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-attachment: fixed; /* Keep the image fixed in place while scrolling */}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+   
+    color: white;
+}
+
+.navbar-brand {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.navbar-nav {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-item {
+    display: inline;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.container {
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.containerr{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jumbotron {
+    text-align: center;
+    padding: 2rem;
+    /* background-color: #007bff; */
+    color: white;
+    /* background-image: url('./Images/Space\ wallpaper\ dump.jpeg'); */
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.jumbotron h1 {
+    font-size: 2.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.task-list {
+    margin-top: 2rem;
+}
+
+.task-item {
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
