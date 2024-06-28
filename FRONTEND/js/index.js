@@ -78,30 +78,34 @@ document.addEventListener("DOMContentLoaded", () => {
         
     }
 
-    const logout = document.getElementById("logout")
-    if(logout){
-        logout.addEventListener("click" ,async(event)=>{
-            event.preventDefault()
-            try {
-                const response = await fetch("http://localhost:8000/api/v1/users/logout",{
-                    method: "POST"
-                })
-                const result = await response.json()
-                console.log("Response status:", response.status);
-                console.log("Response message:", result.message);
-                if(response.ok){
-                    alert("logout successful")
-                    window.location.href = "login.html"
-                }
-                else{
-                    alert(`Error: ${result.message}`)
-                }
+        const logout = document.getElementById("logout")
+        if(logout){
+            logout.addEventListener("click" ,async(event)=>{
+                event.preventDefault()
+                try {
+                    const response = await fetch("http://localhost:8000/api/v1/users/logout",{
+                        method: "POST",
+                        headers:{
+                            "Content-Type": "application/json"
+                        },
+                        
+                    })
+                    const result = await response.json()
+                    console.log("Response status:", response.status);
+                    console.log("Response message:", result.message);
+                    if(response.ok){
+                        alert("logout successful")
+                        window.location.href = "login.html"
+                    }
+                    else{
+                        alert(`Error: ${result.message}`)
+                    }
 
-            } catch (error) {
-                alert("Failed to logout")
-                console.log("Error " ,error)
-            }
-        })
-    }
+                } catch (error) {
+                    alert("Failed to logout")
+                    console.log("Error " ,error)
+                }
+            })
+        }
     // Add similar event listeners and handlers for login, task creation, updating, deleting, etc.
 });
