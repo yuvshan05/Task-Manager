@@ -1,4 +1,6 @@
 //ye jo next line code hai iska matlab jb tk sara html code ek baar execute nahi hoga ye wala html code run nahi hoga 
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const signupForm = document.getElementById("signup-form");
     if (signupForm) {
@@ -78,34 +80,72 @@ document.addEventListener("DOMContentLoaded", () => {
         
     }
 
-        const logout = document.getElementById("logout")
-        if(logout){
-            logout.addEventListener("click" ,async(event)=>{
-                event.preventDefault()
+    const logout = document.getElementById("logout")
+    if(logout){
+        logout.addEventListener("click" ,async(event)=>{
+            event.preventDefault()
+            try {
+               
+                const response = await fetch("http://localhost:8000/api/v1/users/logout", {
+                    method: "POST",
+                    // Include authorization header if your backend expects it
+                    headers: {
+                      "Authorization": `Bearer ${accessToken}`,
+                    },
+                  });
+                const result = await response.json()
+                console.log("Response status:", response.status);
+                console.log("Response message:", result.message);
+                if(response.ok){
+                    alert("logout successful")
+                    window.location.href = "login.html"
+                }
+                else{
+                    alert(`Error: ${result.message}`)
+                }
+
+            } catch (error) {
+                alert("Failed to logout")
+                console.log("Error " ,error)
+            }
+        })
+    }
+
+    const updated = document.getElementById("updated")
+    if(updated)
+        {
+            updated.addEventListener("submit" , async(event)=>{
+                event.preventDefault();
+                const fullname = document.getElementById("fullname").value.trim()
+                const email = document.getElementById("email").value.trim()
+                console.log(fullname + email)
+                if(!fullname || !email){
+                    alert("please enter all field")
+                    return
+                }
                 try {
-                    const response = await fetch("http://localhost:8000/api/v1/users/logout",{
-                        method: "POST",
+                    const response = await fetch("http://localhost:8000/api/v1/users/update-account",{
+                        method: "PATCH",
                         headers:{
-                            "Content-Type": "application/json"
+                            "content-type": "application/json"
                         },
-                        
+                        body: JSON.stringify({fullname , email})
                     })
                     const result = await response.json()
-                    console.log("Response status:", response.status);
-                    console.log("Response message:", result.message);
                     if(response.ok){
-                        alert("logout successful")
-                        window.location.href = "login.html"
+                        alert("success")
+                        window.location.href = "dashboard.html"
                     }
                     else{
-                        alert(`Error: ${result.message}`)
+                        alert(`Error:${result.message}`)
                     }
-
                 } catch (error) {
-                    alert("Failed to logout")
-                    console.log("Error " ,error)
+                    alert("failed")
+                    console.log("error ",error)
                 }
+
             })
         }
+   
     // Add similar event listeners and handlers for login, task creation, updating, deleting, etc.
 });
